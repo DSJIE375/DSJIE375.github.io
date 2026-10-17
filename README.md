@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>友情链接-DSJIE_工作室</title>
+    <title>DSJIE_个人主页</title>
 </head>
 <body>
     <script>
