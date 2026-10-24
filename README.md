@@ -5,6 +5,11 @@
     <title>DSJIE_个人主页</title>
 </head>
 <body>
+    <div>网页为跳转成功，原因可能是</div>
+    <ui>
+        <li>1.您的网络问题，网站想要支持IPv6协议</li>
+        <li>2.我服务器问题，技术升级暂时关闭</li>
+    </ui>
     <script>
         // 设置跳转的目标URL
         const targetUrl = "http://dsjie375.cn:375";
