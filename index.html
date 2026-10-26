@@ -1,145 +1,517 @@
 <!DOCTYPE html>
 <html lang="zh-CN" data-theme="light">
+
 <head>
-<meta charset="UTF-8">
-<!--解除QQ空间限制图片外链-->
-<meta name="referrer" content="never">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DSJIE · 网页未能跳转成功</title>
-<style>
-*{margin:0;padding:0;box-sizing:border-box;}
-:root{--bg:#ffffff;--tint:#f3f4f6;--card:#ffffff;--t1:#111827;--t2:#6b7280;--t3:#9ca3af;--border:#e5e7eb;--btnbg:#111827;--btntx:#ffffff;--shadow:0 20px 50px rgba(0,0,0,.10);--winbord:1px solid #ececec;}
-html[data-theme="dark"]{--bg:#0a0a0a;--tint:#171717;--card:#171717;--t1:#f5f5f5;--t2:#a3a3a3;--t3:#737373;--border:#2a2a2a;--btnbg:#f5f5f5;--btntx:#111827;--shadow:0 20px 50px rgba(0,0,0,.5);--winbord:1px solid #262626;}
-body{font-family:-apple-system,'SF Pro Display','PingFang SC',system-ui,sans-serif;background:var(--bg);color:var(--t2);line-height:1.5;-webkit-font-smoothing:antialiased;transition:background .3s,color .3s;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;}
-body *{transition:background .3s,border-color .3s,color .3s,box-shadow .3s;}
-button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit;}
-a{text-decoration:none;color:inherit;}
-.window{width:1040px;max-width:100%;background:var(--card);border:var(--winbord);border-radius:20px;box-shadow:var(--shadow);overflow:hidden;animation:fadeup .6s ease;}
-@keyframes fadeup{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:none;}}
-@keyframes spin{to{transform:rotate(360deg);}}
-.winbar{height:46px;display:flex;align-items:center;padding:0 18px;border-bottom:1px solid var(--border);}
-.dots{display:flex;gap:7px;}
-.dots i{width:11px;height:11px;border-radius:50%;background:var(--tint);border:1px solid var(--border);}
-.wintitle{flex:1;text-align:center;font-size:13px;color:var(--t3);letter-spacing:.5px;}
-.theme-btn{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--t2);border:1px solid var(--border);transition:.2s;font-size:15px;}
-.theme-btn:hover{color:var(--t1);border-color:var(--t1);}
-.winbody{display:flex;min-height:480px;}
-.side{flex:none;width:240px;border-right:1px solid var(--border);display:flex;flex-direction:column;align-items:center;padding:32px 24px 24px;text-align:center;}
-.avatar{width:80px;height:80px;border-radius:50%;background:var(--tint);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--t1);font-family:'Segoe Script','Brush Script MT','Comic Sans MS',cursive;font-size:26px;font-style:italic;}
-.uname{font-size:20px;font-weight:700;color:var(--t1);margin-top:14px;letter-spacing:.5px;}
-.utitle{font-size:13px;color:var(--t3);margin-top:6px;letter-spacing:.5px;}
-.contact{width:100%;height:44px;margin-top:22px;border:1px solid var(--t1);border-radius:980px;color:var(--t1);font-size:14px;font-weight:600;transition:.2s;letter-spacing:1px;}
-.contact:hover{background:var(--t1);color:var(--btntx);}
-.main{flex:1;padding:36px 34px;display:flex;flex-direction:column;gap:20px;}
-h1{font-size:21px;font-weight:700;color:var(--t1);letter-spacing:.3px;}
-.notice{background:var(--tint);border-radius:20px;padding:18px;display:flex;flex-direction:column;gap:14px;}
-.row{display:flex;gap:14px;align-items:flex-start;}
-.num{flex:none;width:26px;height:26px;border-radius:50%;background:var(--btnbg);color:var(--btntx);font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;}
-.row b{display:block;font-size:15px;color:var(--t1);margin-bottom:3px;}
-.row p{font-size:14px;color:var(--t2);line-height:1.7;}
-.pills{display:flex;flex-wrap:wrap;gap:8px;}
-.sk{padding:8px 14px;font-size:13px;border-radius:12px;background:var(--tint);color:var(--t2);border:1px solid var(--border);}
-.shot{background:var(--tint);border-radius:20px;padding:16px;text-align:center;}
-.shot img{max-width:100%;max-height:300px;border-radius:14px;border:1px solid var(--border);background:var(--card);}
-.showmore{align-self:center;height:40px;padding:0 32px;border-radius:980px;background:var(--btnbg);color:var(--btntx);font-size:13px;font-weight:600;letter-spacing:1px;transition:.2s;}
-.showmore:hover{opacity:.85;}
-.foot{text-align:center;color:var(--t3);font-size:12px;}
-/* 跳转中状态 */
-#jump{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:40px 0;min-height:300px;text-align:center;}
-#jump.hide{display:none;}
-#fail{display:none;flex-direction:column;gap:20px;}
-#fail.show{display:flex;}
-.ring{width:34px;height:34px;border-radius:50%;border:2px solid var(--border);border-top-color:var(--t1);animation:spin .7s linear infinite;}
-.jt{font-size:16px;font-weight:600;color:var(--t1);}
-.js{font-size:13px;color:var(--t3);word-break:break-all;max-width:100%;}
-.manual{height:40px;padding:0 32px;border-radius:980px;border:1px solid var(--t1);color:var(--t1);font-size:13px;font-weight:600;letter-spacing:1px;transition:.2s;}
-.manual:hover{background:var(--t1);color:var(--btntx);}
-@media(max-width:767px){
- body{padding:0;align-items:flex-start;}
- .window{border-radius:0;border:none;box-shadow:none;min-height:100vh;}
- .winbody{flex-direction:column;}
- .side{width:100%;border-right:none;border-bottom:1px solid var(--border);padding:26px 24px 20px;}
- .avatar{width:64px;height:64px;font-size:22px;}
- .main{padding:24px 18px;}
-}
-</style>
+    <meta charset="UTF-8">
+    <!--解除QQ空间限制图片外链-->
+    <meta name="referrer" content="never">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DSJIE · 网页未能跳转成功</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #ffffff;
+            --tint: #f3f4f6;
+            --card: #ffffff;
+            --t1: #111827;
+            --t2: #6b7280;
+            --t3: #9ca3af;
+            --border: #e5e7eb;
+            --btnbg: #111827;
+            --btntx: #ffffff;
+            --shadow: 0 20px 50px rgba(0, 0, 0, .10);
+            --winbord: 1px solid #ececec;
+        }
+
+        html[data-theme="dark"] {
+            --bg: #0a0a0a;
+            --tint: #171717;
+            --card: #171717;
+            --t1: #f5f5f5;
+            --t2: #a3a3a3;
+            --t3: #737373;
+            --border: #2a2a2a;
+            --btnbg: #f5f5f5;
+            --btntx: #111827;
+            --shadow: 0 20px 50px rgba(0, 0, 0, .5);
+            --winbord: 1px solid #262626;
+        }
+
+        body {
+            font-family: -apple-system, 'SF Pro Display', 'PingFang SC', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--t2);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            transition: background .3s, color .3s;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+
+        body * {
+            transition: background .3s, border-color .3s, color .3s, box-shadow .3s;
+        }
+
+        button {
+            font-family: inherit;
+            cursor: pointer;
+            border: none;
+            background: none;
+            color: inherit;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .window {
+            width: 1040px;
+            max-width: 100%;
+            background: var(--card);
+            border: var(--winbord);
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            animation: fadeup .6s ease;
+        }
+
+        @keyframes fadeup {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: none;
+            }
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .winbar {
+            height: 46px;
+            display: flex;
+            align-items: center;
+            padding: 0 18px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .dots {
+            display: flex;
+            gap: 7px;
+        }
+
+        .dots i {
+            width: 11px;
+            height: 11px;
+            border-radius: 50%;
+            background: var(--tint);
+            border: 1px solid var(--border);
+        }
+
+        .wintitle {
+            flex: 1;
+            text-align: center;
+            font-size: 13px;
+            color: var(--t3);
+            letter-spacing: .5px;
+        }
+
+        .theme-btn {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--t2);
+            border: 1px solid var(--border);
+            transition: .2s;
+            font-size: 15px;
+        }
+
+        .theme-btn:hover {
+            color: var(--t1);
+            border-color: var(--t1);
+        }
+
+        .winbody {
+            display: flex;
+            min-height: 480px;
+        }
+
+        .side {
+            flex: none;
+            width: 240px;
+            border-right: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 32px 24px 24px;
+            text-align: center;
+        }
+
+        .avatar img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--tint);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--t1);
+            font-family: 'Segoe Script', 'Brush Script MT', 'Comic Sans MS', cursive;
+            font-size: 26px;
+            font-style: italic;
+        }
+
+        .uname {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--t1);
+            margin-top: 14px;
+            letter-spacing: .5px;
+        }
+
+        .utitle {
+            font-size: 13px;
+            color: var(--t3);
+            margin-top: 6px;
+            letter-spacing: .5px;
+        }
+
+        .contact {
+            width: 100%;
+            height: 44px;
+            margin-top: 22px;
+            border: 1px solid var(--t1);
+            border-radius: 980px;
+            color: var(--t1);
+            font-size: 14px;
+            font-weight: 600;
+            transition: .2s;
+            letter-spacing: 1px;
+        }
+
+        .contact:hover {
+            background: var(--t1);
+            color: var(--btntx);
+        }
+
+        .main {
+            flex: 1;
+            padding: 36px 34px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        h1 {
+            font-size: 21px;
+            font-weight: 700;
+            color: var(--t1);
+            letter-spacing: .3px;
+        }
+
+        .notice {
+            background: var(--tint);
+            border-radius: 20px;
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .row {
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+        }
+
+        .num {
+            flex: none;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background: var(--btnbg);
+            color: var(--btntx);
+            font-size: 13px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .row b {
+            display: block;
+            font-size: 15px;
+            color: var(--t1);
+            margin-bottom: 3px;
+        }
+
+        .row p {
+            font-size: 14px;
+            color: var(--t2);
+            line-height: 1.7;
+        }
+
+        .pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .sk {
+            padding: 8px 14px;
+            font-size: 13px;
+            border-radius: 12px;
+            background: var(--tint);
+            color: var(--t2);
+            border: 1px solid var(--border);
+        }
+
+        .shot {
+            background: var(--tint);
+            border-radius: 20px;
+            padding: 16px;
+            text-align: center;
+        }
+
+        .shot img {
+            max-width: 100%;
+            max-height: 300px;
+            border-radius: 14px;
+            border: 1px solid var(--border);
+            background: var(--card);
+        }
+
+        .showmore {
+            align-self: center;
+            height: 40px;
+            padding: 0 32px;
+            border-radius: 980px;
+            background: var(--btnbg);
+            color: var(--btntx);
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: .2s;
+        }
+
+        .showmore:hover {
+            opacity: .85;
+        }
+
+        .foot {
+            text-align: center;
+            color: var(--t3);
+            font-size: 12px;
+        }
+
+        /* 跳转中状态 */
+        #jump {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            padding: 40px 0;
+            min-height: 300px;
+            text-align: center;
+        }
+
+        #jump.hide {
+            display: none;
+        }
+
+        #fail {
+            display: none;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        #fail.show {
+            display: flex;
+        }
+
+        .ring {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            border: 2px solid var(--border);
+            border-top-color: var(--t1);
+            animation: spin .7s linear infinite;
+        }
+
+        .jt {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--t1);
+        }
+
+        .js {
+            font-size: 13px;
+            color: var(--t3);
+            word-break: break-all;
+            max-width: 100%;
+        }
+
+        .manual {
+            height: 40px;
+            padding: 0 32px;
+            border-radius: 980px;
+            border: 1px solid var(--t1);
+            color: var(--t1);
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: .2s;
+        }
+
+        .manual:hover {
+            background: var(--t1);
+            color: var(--btntx);
+        }
+
+        @media(max-width:767px) {
+            body {
+                padding: 0;
+                align-items: flex-start;
+            }
+
+            .window {
+                border-radius: 0;
+                border: none;
+                box-shadow: none;
+                min-height: 100vh;
+            }
+
+            .winbody {
+                flex-direction: column;
+            }
+
+            .side {
+                width: 100%;
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+                padding: 26px 24px 20px;
+            }
+
+            .avatar img {
+                width: 64px;
+                height: 64px;
+                font-size: 22px;
+            }
+
+            .main {
+                padding: 24px 18px;
+            }
+        }
+    </style>
 </head>
+
 <body>
-<div class="window">
-  <div class="winbar">
-    <div class="dots"><i></i><i></i><i></i></div>
-    <div class="wintitle">DSJIE · 访问提示</div>
-    <button class="theme-btn" id="themeBtn" title="切换主题">◐</button>
-  </div>
-  <div class="winbody">
-    <aside class="side">
-      <div class="avatar"><img src="https://photogzmaz.photo.store.qq.com/psc?/V53j6UAt2xz4nw2ts7x30ScdrY2uKsE1/TmEUgtj9EK6.7V8ajmQrEI8fowv86BGwZKk634Mc7X7*5I4sTJpuGz2vuxcPlHQdbF17ujoEHf7ZjZE.JogV*zYPUB6zMtAK0aDn4DW8wno!/b&bo=oAWhBaAFoQUBFzA!&rf=viewer_4&t=5"
-               alt="dsjie" referrerpolicy="no-referrer"
-               onerror="this.onerror=null;this.src='45491.jpg';"></div>
-      <div class="uname">DSJIE</div>
-      <div class="utitle">独立开发者 · 个人主页作者</div>
-      <button class="contact" onclick="go()">重新跳转</button>
-    </aside>
-    <main class="main">
-      <div id="jump">
-        <div class="ring"></div>
-        <div class="jt">正在前往目标站点…</div>
-        <div class="js" id="jsTarget"></div>
-        <button class="manual" id="manualBtn">没反应？点此手动前往</button>
-      </div>
-
-      <div id="fail">
-        <h1>网页未能跳转成功，原因可能是：</h1>
-        <div class="notice">
-          <div class="row"><span class="num">1</span><div><b>您的网络问题</b><p>网站需要网络支持 IPv6 协议，请切换到支持 IPv6 的网络后重试。</p></div></div>
-          <div class="row"><span class="num">2</span><div><b>服务器问题</b><p>技术升级暂时关闭，请耐心等待！</p></div></div>
+    <div class="window">
+        <div class="winbar">
+            <div class="dots"><i></i><i></i><i></i></div>
+            <div class="wintitle">DSJIE · 访问提示</div>
+            <button class="theme-btn" id="themeBtn" title="切换主题">◐</button>
         </div>
-        <div class="pills">
-          <span class="sk">① 切 5G 数据重试</span>
-          <span class="sk">② 检查 WiFi 是否有 IPv6</span>
-          <span class="sk">③ 网络正常则稍后再来</span>
+        <div class="winbody">
+            <aside class="side">
+                <div class="avatar">
+                    <img src="https://photogzmaz.photo.store.qq.com/psc?/V53j6UAt2xz4nw2ts7x30ScdrY2uKsE1/TmEUgtj9EK6.7V8ajmQrEI8fowv86BGwZKk634Mc7X7*5I4sTJpuGz2vuxcPlHQdbF17ujoEHf7ZjZE.JogV*zYPUB6zMtAK0aDn4DW8wno!/b&bo=oAWhBaAFoQUBFzA!&rf=viewer_4&t=5" alt="dsjie-logo">
+                </div>
+                <div class="uname">DSJIE</div>
+                <div class="utitle">独立开发者 · 个人主页作者</div>
+                <button class="contact" onclick="go()">重新跳转</button>
+            </aside>
+            <main class="main">
+                <div id="jump">
+                    <div class="ring"></div>
+                    <div class="jt">正在前往目标站点…</div>
+                    <div class="js" id="jsTarget"></div>
+                    <button class="manual" id="manualBtn">没反应？点此手动前往</button>
+                </div>
+
+                <div id="fail">
+                    <h1>网页未能跳转成功，原因可能是：</h1>
+                    <div class="notice">
+                        <div class="row"><span class="num">1</span>
+                            <div><b>您的网络问题</b>
+                                <p>网站需要网络支持 IPv6 协议，请切换到支持 IPv6 的网络后重试。</p>
+                            </div>
+                        </div>
+                        <div class="row"><span class="num">2</span>
+                            <div><b>服务器问题</b>
+                                <p>技术升级暂时关闭，请耐心等待！</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pills">
+                        <span class="sk">① 切 5G 数据重试</span>
+                        <span class="sk">② 检查 WiFi 是否有 IPv6</span>
+                        <span class="sk">③ 网络正常则稍后再来</span>
+                    </div>
+                    <div class="shot">
+                        <img src="https://photogzmaz.photo.store.qq.com/psc?/V53j6UAt2xz4nw2ts7x30ScdrY2uKsE1/TmEUgtj9EK6.7V8ajmQrEI8fowv86BGwZKk634Mc7X7*5I4sTJpuGz2vuxcPlHQdbF17ujoEHf7ZjZE.JogV*zYPUB6zMtAK0aDn4DW8wno!/b&bo=oAWhBaAFoQUBFzA!&rf=viewer_4&t=5"
+                            alt="dsjie" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src='45491.jpg';">
+                    </div>
+                    <button class="showmore" onclick="go()">再次尝试</button>
+                </div>
+
+                <div class="foot">DSJIE · 若长时间无法访问，请稍后重试</div>
+            </main>
         </div>
-        <div class="shot">
-          <img src="https://photogzmaz.photo.store.qq.com/psc?/V53j6UAt2xz4nw2ts7x30ScdrY2uKsE1/TmEUgtj9EK6.7V8ajmQrEI8fowv86BGwZKk634Mc7X7*5I4sTJpuGz2vuxcPlHQdbF17ujoEHf7ZjZE.JogV*zYPUB6zMtAK0aDn4DW8wno!/b&bo=oAWhBaAFoQUBFzA!&rf=viewer_4&t=5"
-               alt="dsjie" referrerpolicy="no-referrer"
-               onerror="this.onerror=null;this.src='45491.jpg';">
-        </div>
-        <button class="showmore" onclick="go()">再次尝试</button>
-      </div>
+    </div>
+    <script>
+        /* ===== 只改这一行：目标链接 ===== */
+        var TARGET = "http://dsjie375.cn:375";   // ← 目标地址
+        var TIMEOUT = 3000;                     // 判定失败的等待毫秒
+        var gone = false;                       // 是否已离开本页（跳转成功标志）
 
-      <div class="foot">DSJIE · 若长时间无法访问，请稍后重试</div>
-    </main>
-  </div>
-</div>
-<script>
-/* ===== 只改这一行：目标链接 ===== */
-var TARGET = "http://dsjie375.cn:375";   // ← 目标地址
-var TIMEOUT = 3000;                     // 判定失败的等待毫秒
-var gone = false;                       // 是否已离开本页（跳转成功标志）
+        function go() {location.href = TARGET;}
 
-function go(){ location.href = TARGET; }
+        document.getElementById('jsTarget').textContent = TARGET;
+        document.getElementById('manualBtn').onclick = go;
+        window.addEventListener('pagehide', function () {gone = true;});      // 导航开始=已离开
+        window.addEventListener('blur', function () {gone = true;});          // 失焦兜底
 
-document.getElementById('jsTarget').textContent = TARGET;
-document.getElementById('manualBtn').onclick = go;
-window.addEventListener('pagehide', function(){ gone = true; });      // 导航开始=已离开
-window.addEventListener('blur', function(){ gone = true; });          // 失焦兜底
+        setTimeout(function () {
+            if (!gone) {                       // 5 秒后还留在本页 = 跳转失败
+                document.getElementById('jump').classList.add('hide');
+                document.getElementById('fail').classList.add('show');
+            }
+        }, TIMEOUT);
 
-setTimeout(function(){
-  if(!gone){                       // 5 秒后还留在本页 = 跳转失败
-    document.getElementById('jump').classList.add('hide');
-    document.getElementById('fail').classList.add('show');
-  }
-}, TIMEOUT);
-
-go();  // 立即跳转
-</script>
-<script>
-(function(){var t=localStorage.getItem('theme');
- if(t){document.documentElement.setAttribute('data-theme',t);}
- else if(matchMedia('(prefers-color-scheme:dark)').matches){document.documentElement.setAttribute('data-theme','dark');}
- document.getElementById('themeBtn').onclick=function(){
-  var n=document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark';
-  document.documentElement.setAttribute('data-theme',n);localStorage.setItem('theme',n);};})();
-</script>
+        go();  // 立即跳转
+    </script>
+    <script>
+        (function () {
+            var t = localStorage.getItem('theme');
+            if (t) {document.documentElement.setAttribute('data-theme', t);}
+            else if (matchMedia('(prefers-color-scheme:dark)').matches) {document.documentElement.setAttribute('data-theme', 'dark');}
+            document.getElementById('themeBtn').onclick = function () {
+                var n = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+                document.documentElement.setAttribute('data-theme', n); localStorage.setItem('theme', n);
+            };
+        })();
+    </script>
 </body>
+
 </html>
